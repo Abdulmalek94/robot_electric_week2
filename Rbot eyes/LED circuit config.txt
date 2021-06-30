@@ -1,0 +1,6 @@
+The LED circuit should be in parallel for these reasons:
+
+1- In sereies, voltage will drop in each component so the other LED will
+will be dimmer/low than the first one.
+
+2- Easy maintaince, If one of the leds burned the second LED/EYE will not be affeted.  

@@ -1,0 +1,70 @@
+#define MotorL1 5
+#define MotorL2 6
+#define MotorR1 3
+#define MotorR2 9
+#define SW 2 // Streight/Reverse switch
+#define SW2 8 // ON/OFF switch
+#define pot A0 // Speed control
+int val = 0;
+void motorStreight()
+{
+  
+  digitalWrite(MotorL1, HIGH);
+  digitalWrite(MotorR1, HIGH);
+  digitalWrite(MotorL2, LOW); 
+  digitalWrite(MotorR2, LOW); 
+  analogWrite(MotorL1,val);
+  analogWrite(MotorR1,val);
+}
+
+void motorReverse()
+{
+  digitalWrite(MotorL1, LOW);
+  digitalWrite(MotorR1, LOW);
+  digitalWrite(MotorL2, HIGH); 
+  digitalWrite(MotorR2, HIGH); 
+  analogWrite(MotorL2,val);
+  analogWrite(MotorR2,val);
+  
+}
+
+void motorStop()
+{
+  digitalWrite(MotorL1, LOW);
+  digitalWrite(MotorR1, LOW);
+  digitalWrite(MotorL2, LOW); 
+  digitalWrite(MotorR2, LOW); 
+}
+
+void setup()
+{
+  pinMode(MotorL1, OUTPUT);
+  pinMode(MotorR1, OUTPUT);
+  pinMode(MotorL2, OUTPUT);
+  pinMode(MotorR2, OUTPUT);
+  pinMode(pot, INPUT);
+  pinMode(SW, INPUT);
+  pinMode(SW2, INPUT);
+}
+
+void loop()
+{
+  val = analogRead(pot);
+  val = map(val,0 ,1023 ,0,255);
+  bool swval = digitalRead(SW);
+  bool sw2val = digitalRead(SW2); 
+  if (sw2val == HIGH) {
+   if(swval == HIGH){
+   motorStreight();
+   }
+   else {
+   motorReverse();
+   }
+  
+   delay(15);
+   }
+  else {
+    motorStop();
+  }
+  delay(15);
+}
