@@ -9,3 +9,4 @@ Features :
 
 
 # File #2: Red LED for robot eyes connected in parallel.
+* 555 Timer IC used to produce PWM
